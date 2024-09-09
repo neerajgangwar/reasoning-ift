@@ -1,0 +1,22 @@
+dataset_name: bigbench
+filepaths:
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/1_digit_addition/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/2_digit_addition/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/3_digit_addition/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/4_digit_addition/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/5_digit_addition/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/1_digit_subtraction/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/2_digit_subtraction/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/3_digit_subtraction/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/4_digit_subtraction/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/5_digit_subtraction/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/1_digit_multiplication/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/2_digit_multiplication/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/3_digit_multiplication/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/4_digit_multiplication/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/5_digit_multiplication/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/1_digit_division/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/2_digit_division/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/3_digit_division/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/4_digit_division/task.json
+- external/BIG-bench/bigbench/benchmark_tasks/arithmetic/5_digit_division/task.json

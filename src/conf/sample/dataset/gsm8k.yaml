@@ -1,0 +1,4 @@
+dataset_name: gsm8k
+train: datasets/gsm8k/train.json
+val: datasets/gsm8k/val.json
+test: datasets/gsm8k/test.json

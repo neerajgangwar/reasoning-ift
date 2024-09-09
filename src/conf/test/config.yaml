@@ -1,0 +1,23 @@
+defaults:
+  - _self_
+  - dataset: gsm8k
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: stdout
+
+hydra:
+  output_subdir: null
+  run:
+    dir: .
+
+saved_model_path:
+precision: bf16-mixed
+seed: 42
+test_batch_size: 32
+max_new_tokens: 512
+temperature: 0.6
+top_p: 0.9
+num_return_sequences: 8
+num_test_examples: -1
+ckpt_name: best
+results_filename: test.json
+skip_val_file_check: false
