@@ -1,5 +1,6 @@
 import json
 import random
+import gzip
 from typing import Dict, Union
 from torch.utils.data import Dataset
 from datasets import load_dataset
@@ -9,7 +10,7 @@ class GoatArithmeticDataset(Dataset):
     def __init__(self, filepath: str, num_examples: int) -> None:
         super().__init__()
         self.num_examples = num_examples
-        with open(filepath, 'r') as f:
+        with gzip.open(filepath, 'r') as f:
             self.dataset = json.load(f)
         # self.dataset = load_dataset('tiedong/goat', split=split)
         if num_examples != -1:

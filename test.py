@@ -7,7 +7,7 @@ import lightning as L
 from pathlib import Path
 from functools import partial
 from torch.utils.data import DataLoader, Dataset
-from omegaconf import DictConfig, OmegaConf, ListConfig
+from omegaconf import DictConfig, OmegaConf
 from lightning.pytorch.strategies import FSDPStrategy, DDPStrategy
 from src.data import (
     GSM8kDataset,
@@ -104,50 +104,26 @@ def main(args : DictConfig):
     # data
     test_batch_size = round(args.test_batch_size / trainer.num_devices)
     logger.info(f'Per device batch size: {test_batch_size}')
-    data_modes, test_dataloaders = [], []
-    if isinstance(train_args.dataset, ListConfig):
-        for train_ds_config in train_args.dataset:
-            data_modes.append(train_ds_config.data_mode)
-            test_dataset = create_dataset(args, train_ds_config.data_mode)
-            test_dataloader = DataLoader(
-                test_dataset,
-                collate_fn=partial(model.collate_fn, is_test=True),
-                batch_size=test_batch_size,
-                shuffle=False,
-            )
-            test_dataloaders.append(test_dataloader)
-    else:
-        test_dataset = create_dataset(args, train_args.dataset.data_mode)
-        test_dataloader = DataLoader(
-            test_dataset,
-            collate_fn=partial(model.collate_fn, is_test=True),
-            batch_size=test_batch_size,
-            shuffle=False,
-        )
-        test_dataloaders.append(test_dataloader)
-        data_modes.append(train_args.dataset.data_mode)
+    test_dataset = create_dataset(args, train_args.dataset.data_mode)
+    test_dataloader = DataLoader(
+        test_dataset,
+        collate_fn=partial(model.collate_fn),
+        batch_size=test_batch_size,
+        shuffle=False,
+    )
 
-    results = trainer.test(model, dataloaders=test_dataloaders)
-    if len(data_modes) == 1:
-        all_results = results[0]
-    else:
-        all_results = []
-        for idx, r in enumerate(results):
-            r['data_mode'] = data_modes[idx]
-            all_results.append({k.replace(f'/dataloader_idx_{idx}', '') : v for k, v in r.items()})
+    results = trainer.test(model, dataloaders=test_dataloader)
+    results = results[0]
 
     model_outputs = model.model_outputs
     model.model_outputs = None
 
-    if len(data_modes) == 1:
-        assert len(model_outputs) == all_results['test/dataset_size'], (len(model_outputs), all_results['test/dataset_size'])
-    else:
-        assert len(model_outputs) == sum(r['test/dataset_size'] for r in all_results), (len(model_outputs), sum(r['test/dataset_size'] for r in all_results))
+    assert len(model_outputs) == results['test/dataset_size'], (len(model_outputs), results['test/dataset_size'])
 
     with gzip.open(results_filepath, 'wt') as f:
         json.dump({
             'args': OmegaConf.to_container(args),
-            'results': all_results,
+            'results': results,
             'model_outputs': model_outputs,
         }, f, indent=4)
 

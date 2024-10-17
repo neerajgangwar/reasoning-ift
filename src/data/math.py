@@ -1,6 +1,7 @@
 import json
 import re
 import random
+import gzip
 from typing import Dict, Any
 from xml.etree import ElementTree as ET
 from torch.utils.data import Dataset
@@ -98,7 +99,7 @@ class SVAMPDataset(Dataset):
         self.prompt = GSM8K_PROMPTS[self.data_mode]
         self.prompt_delim = GSM8K_PROMPT_DELIMS[self.data_mode]
 
-        with open(self.filepath) as f:
+        with gzip.open(self.filepath) as f:
             self.examples = json.load(f)
 
 

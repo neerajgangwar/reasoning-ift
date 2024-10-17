@@ -1,6 +1,7 @@
 import re
 import json
 import random
+import gzip
 from abc import ABC, abstractmethod
 from typing import Dict, Union
 from torch.utils.data import Dataset
@@ -17,7 +18,7 @@ class GSM8kDataset(Dataset):
     def __init__(self, filepath: str, num_examples: int=-1):
         super(GSM8kDataset, self).__init__()
 
-        with open(filepath) as f:
+        with gzip.open(filepath) as f:
             self.examples = json.load(f)
             if num_examples != -1:
                 random.shuffle(self.examples)
@@ -46,7 +47,7 @@ class GSM8kGeneratedDataset(Dataset):
     def __init__(self, filepath: str, num_examples: int=-1):
         super(GSM8kGeneratedDataset, self).__init__()
 
-        with open(filepath) as f:
+        with gzip.open(filepath) as f:
             self.examples = json.load(f)
             if num_examples != -1:
                 random.shuffle(self.examples)

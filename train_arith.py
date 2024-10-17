@@ -14,7 +14,7 @@ from src.data import (
     GoatArithmeticDataset,
     ZeroShotGSM8kDataset,
 )
-from src.model import T5ForMath, GPT2ForMath
+from src.model import T5ForMath
 
 
 logger = logging.getLogger(__name__)
@@ -86,19 +86,6 @@ def main(args : DictConfig):
     # Model
     if args.model_type == 't5':
         model = T5ForMath(
-            model_name_or_path=args.model_name_or_path,
-            tokenizer_name_or_path=args.model_name_or_path,
-            optim=args.optim,
-            optim_args=args.optim_args,
-            max_input_len=args.max_input_len,
-            max_new_tokens=args.max_new_tokens,
-            temperature=None,
-            top_p=None,
-            num_return_sequences=None,
-            warmup_steps=args.warmup_steps,
-        )
-    elif args.model_type == 'gpt2':
-        model = GPT2ForMath(
             model_name_or_path=args.model_name_or_path,
             tokenizer_name_or_path=args.model_name_or_path,
             optim=args.optim,
