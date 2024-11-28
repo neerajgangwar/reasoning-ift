@@ -1,5 +1,5 @@
 dataset_name: gsm8k_orig
 data_mode: cot
-train_file: datasets/gsm8k_orig/train.json
-val_file: datasets/gsm8k/val.json
-test_file: datasets/gsm8k/test.json
+train_file: datasets/gsm8k_orig/train.json.gz
+val_file: datasets/gsm8k/val.json.gz
+test_file: datasets/gsm8k/test.json.gz

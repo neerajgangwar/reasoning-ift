@@ -1,2 +1,2 @@
 dataset_name: svamp
-filepath: datasets/svamp/SVAMP.json
+filepath: datasets/svamp/SVAMP.json.gz

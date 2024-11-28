@@ -1,4 +1,4 @@
 dataset_name: goat
 data_mode: cot
 # train_split: train
-filepath: datasets/goat/dataset.json
+filepath: datasets/goat/dataset.json.gz

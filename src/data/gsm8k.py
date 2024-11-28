@@ -18,7 +18,7 @@ class GSM8kDataset(Dataset):
     def __init__(self, filepath: str, num_examples: int=-1):
         super(GSM8kDataset, self).__init__()
 
-        with gzip.open(filepath) as f:
+        with gzip.open(filepath, 'rt') as f:
             self.examples = json.load(f)
             if num_examples != -1:
                 random.shuffle(self.examples)
@@ -47,7 +47,7 @@ class GSM8kGeneratedDataset(Dataset):
     def __init__(self, filepath: str, num_examples: int=-1):
         super(GSM8kGeneratedDataset, self).__init__()
 
-        with gzip.open(filepath) as f:
+        with gzip.open(filepath, 'rt') as f:
             self.examples = json.load(f)
             if num_examples != -1:
                 random.shuffle(self.examples)
