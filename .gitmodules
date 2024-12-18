@@ -1,0 +1,9 @@
+[submodule "external/asdiv"]
+	path = external/asdiv
+	url = https://github.com/chaochun/nlu-asdiv-dataset.git
+[submodule "external/GSM-IC"]
+	path = external/GSM-IC
+	url = https://github.com/google-research-datasets/GSM-IC.git
+[submodule "external/BIG-bench"]
+	path = external/BIG-bench
+	url = https://github.com/google/BIG-bench.git

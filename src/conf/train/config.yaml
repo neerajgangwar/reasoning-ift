@@ -1,0 +1,35 @@
+defaults:
+  - _self_
+  - dataset: gsm8k_cot
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: stdout
+
+hydra:
+  output_subdir: null
+  run:
+    dir: .
+
+save_path:
+optim: AdamW
+optim_args:
+  lr: 1e-4
+  weight_decay: 1e-4
+grad_accum_steps: 4
+num_epochs: 10
+model_type: t5
+model_name_or_path: google/flan-t5-base
+gradient_clip_val: 5.
+precision: bf16-mixed
+seed: 42
+project_name: reasoning_comparison
+run_name: test
+max_input_len: 1024
+max_new_tokens: 512
+val_check_interval: 1.0
+train_batch_size: 128
+val_batch_size: 128
+num_train_examples: -1
+num_val_examples: -1
+log_every_n_steps: 5
+warmup_steps: 0
+strategy: ddp

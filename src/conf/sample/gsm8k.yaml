@@ -1,0 +1,23 @@
+defaults:
+  - _self_
+  - model: llama
+  - dataset: gsm8k
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: stdout
+hydra:
+  output_subdir: null
+  run:
+    dir: .
+
+batch_size: 4
+do_sample: true
+max_new_tokens: 128
+top_p: 0.95
+temperature: 0.6
+num_return_sequences: 32
+save_path:
+overwrite_save_path: false
+seed: 42
+split: train
+prompt_type: cot
+num_examples: -1
